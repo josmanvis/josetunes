@@ -1,0 +1,40 @@
+# New Container
+if [ -z "$1" ]; then
+ echo "Please provide a container name."
+ exit 1
+fi
+container_NAME=$1
+container_NAME_KEBAB=$(echo "$container_NAME" | sed 's/\([a-z]\)\([A-Z]\)/\1-\2/g' | tr '[:upper:]' '[:lower:]')
+CURRENT_DIR=$(pwd)
+TSX_FILE="$CURRENT_DIR/src/containers/${container_NAME}.tsx"
+SCSS_FILE="$CURRENT_DIR/src/containers/${container_NAME}.scss"
+echo "Current directory: $CURRENT_DIR"
+echo "TSX file will be created at: $TSX_FILE"
+echo "SCSS file will be created at: $SCSS_FILE"
+mkdir -p "$CURRENT_DIR/src/containers"
+cat <<EOL > $TSX_FILE
+import "./${container_NAME}.scss";
+const ${container_NAME}=(props:any)=> {
+ return <div data-name={props.name ? props.name : null} class={"${container_NAME_KEBAB}" + (props.class ? (" " + props.class) : "")} style={props.style ? props.style : null}>
+ {props.children}
+ </div>
+}
+export default ${container_NAME};
+EOL
+if [ -f "$TSX_FILE" ]; then
+ echo "TSX file created successfully."
+else
+ echo "Failed to create TSX file."
+fi
+cat <<EOL > $SCSS_FILE
+.${container_NAME_KEBAB} {
+}
+EOL
+if [ -f "$SCSS_FILE" ]; then
+ echo "SCSS file created successfully."
+else
+ echo "Failed to create SCSS file."
+fi
+echo "container ${container_NAME} created successfully:"
+echo " - ${TSX_FILE}"
+echo " - ${SCSS_FILE}"

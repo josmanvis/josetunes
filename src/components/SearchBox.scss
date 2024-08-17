@@ -1,0 +1,18 @@
+.search-box {
+    width: 100%;
+    height: 100%;
+    input[type="text"] {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        font-size: var(--uiControls_fontSize);
+        border: none;
+        border-radius: var(--uiControls_borderRadius);
+        background-color: var(--uiControls_backgroundColor);
+        color: var(--uiControls_color);
+        outline: none;
+        padding: 0px 20px;
+        box-sizing: border-box;
+    }
+}

@@ -1,0 +1,42 @@
+# ez:title:"New Component";
+# ez:script-src: "http://github.com/ez-scripts/solidjs/create-component";
+# ez:vsc-notify: "Component $1 was added";
+
+if [ -z "$1" ]; then
+ echo "Please provide a component name."
+ exit 1
+fi
+COMPONENT_NAME=$1
+COMPONENT_NAME_KEBAB=$(echo "$COMPONENT_NAME" | sed 's/\([a-z]\)\([A-Z]\)/\1-\2/g' | tr '[:upper:]' '[:lower:]')
+CURRENT_DIR=$(pwd)
+TSX_FILE="$CURRENT_DIR/src/components/${COMPONENT_NAME}.tsx"
+SCSS_FILE="$CURRENT_DIR/src/components/${COMPONENT_NAME}.scss"
+echo "Current directory: $CURRENT_DIR"
+echo "TSX file will be created at: $TSX_FILE"
+echo "SCSS file will be created at: $SCSS_FILE"
+mkdir -p "$CURRENT_DIR/src/components"
+cat <<EOL > $TSX_FILE
+import "./${COMPONENT_NAME}.scss";
+const ${COMPONENT_NAME}=()=> {
+ return <div class="${COMPONENT_NAME_KEBAB}">
+ </div>;
+}
+export default ${COMPONENT_NAME};
+EOL
+if [ -f "$TSX_FILE" ]; then
+ echo "TSX file created successfully."
+else
+ echo "Failed to create TSX file."
+fi
+cat <<EOL > $SCSS_FILE
+.${COMPONENT_NAME_KEBAB} {
+}
+EOL
+if [ -f "$SCSS_FILE" ]; then
+ echo "SCSS file created successfully."
+else
+ echo "Failed to create SCSS file."
+fi
+echo "Component ${COMPONENT_NAME} created successfully:"
+echo " - ${TSX_FILE}"
+echo " - ${SCSS_FILE}"

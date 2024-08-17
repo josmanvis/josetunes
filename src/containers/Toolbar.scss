@@ -1,0 +1,10 @@
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    gap: 2px;
+    height: 50px;
+    width: 100%;
+}

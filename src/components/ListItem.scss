@@ -1,0 +1,52 @@
+li.list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    box-sizing: border-box;
+    gap: 10px;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .url {
+        /* Ellipsed text */
+        white-space: nowrap;
+        word-wrap: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background-color: orange;
+    }
+    .item-download-btn {
+        background-color: transparent;
+        border: none;
+        padding: 0px;
+        cursor: pointer;
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+    .task-options {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-left: auto;
+        button.delete {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0px;
+            border-radius: 5px;
+            cursor: pointer;
+            height: auto;
+            width: auto;
+            &:hover {
+                /* background-color: #d32f2f; */
+            }
+            img {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}

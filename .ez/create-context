@@ -1,0 +1,38 @@
+# New Context
+to_kebab_case() {
+ echo "$1" | sed 's/\([a-z]\)\([A-Z]\)/\1-\2/g' | tr '[:upper:]' '[:lower:]'
+}
+to_pascal_case() {
+ echo "$1" | sed -r 's/(^|-)(\w)/\U\2/g'
+}
+if [ -z "$1" ]; then
+ echo "Please provide a context name."
+ exit 1
+fi
+kebab_case_name=$(to_kebab_case "$1")
+pascal_case_name=$(to_pascal_case "$1")
+directory="./src/contexts"
+file_path="$directory/$kebab_case_name.tsx"
+mkdir -p "$directory"
+cat <<EOF > "$file_path"
+import {
+ createContext,
+ useContext,
+ createSignal,
+ createEffect,
+ onMount,
+ onCleanup,
+} from "solid-js";
+import { clientOnly } from "@solidjs/start";
+export const ${pascal_case_name}Context=createContext();
+export const ${pascal_case_name}Provider=(props: any)=> {
+ // Global State Context
+ const contextValue={};
+ return (
+ <${pascal_case_name}Context.Provider value={contextValue}>
+ {props.children}
+ </${pascal_case_name}Context.Provider>
+ );
+};
+EOF
+echo "File created at $file_path"

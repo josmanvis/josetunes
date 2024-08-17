@@ -1,0 +1,36 @@
+.badge-status {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    box-sizing: border-box;
+    /* border: 1px solid #f0f0f0; */
+    /* padding: 0px 6px; */
+    .failed {
+        background: #f44336;
+    }
+    .queued {
+        background: #ff9800;
+    }
+    .completed {
+        background: #4caf50;
+    }
+    .downloading {
+        background: #2196f3;
+    }
+    .status-text {
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+        line-height: 10px;
+        font-weight: 500;
+        color: #fff;
+        border-radius: 5px;
+        text-transform: uppercase;
+    }
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+}

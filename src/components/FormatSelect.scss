@@ -1,0 +1,18 @@
+.format-select {
+    height: 100%;
+    select {
+        height: 100%;
+        padding: 0px 20px;
+        text-align: center;
+        /* remove webkit appearance: ; */
+        -webkit-appearance: none;
+        font-size: var(--uiControls_fontSize);
+        border: none;
+        border-radius: var(--uiControls_borderRadius);
+        background-color: var(--uiControls_backgroundColor);
+        color: var(--uiControls_color);
+        &:hover {
+            background-color: #666;
+        }
+    }
+}
