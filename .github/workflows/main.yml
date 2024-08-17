@@ -38,7 +38,7 @@ jobs:
         with:
           package-manager: npm
           install-dependencies: true
-          add-dependency: bun@latest
+          add-dependency: bun@v1
 
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
