@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # - platform: "macos-latest" # for Arm based macs (M1 and above).
-          #   args: "--target aarch64-apple-darwin"
+          - platform: "macos-latest"
+            args: "--target aarch64-apple-darwin"
           - platform: "windows-latest"
             args: ""
 
@@ -30,7 +30,6 @@ jobs:
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
         with:
-          # Targets used only on macOS runners.
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
       - name: install dependencies (ubuntu only)
@@ -46,12 +45,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: app-v__VERSION__ # Automatically replaces __VERSION__ with the app version.
+          tagName: app-v__VERSION__
           releaseName: "App v__VERSION__"
           releaseBody: "See the assets to download this version and install."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
+
+      - name: Generate dynamic tag name
+        id: tag_name
+        run: echo "TAG_NAME=release-$(date +%Y%m%d)-${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Create Release
         id: create_release
@@ -59,8 +62,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.sha }}
-          release_name: "Release ${{ github.sha }}"
+          tag_name: ${{ env.TAG_NAME }}
+          release_name: Release ${{ env.TAG_NAME }}
           draft: false
           prerelease: false
 
@@ -69,7 +72,7 @@ jobs:
         with:
           upload_url: ${{ steps.tauri.outputs.upload_url }}
           asset_path: |
-            src-tauri/target/release/bundle/macos/*.dmg # Path to the macOS binary
-            src-tauri/target/release/bundle/windows/*.msi # Path to the Windows installer
+            src-tauri/target/release/bundle/macos/*.dmg
+            src-tauri/target/release/bundle/windows/*.msi
           asset_name: ${{ matrix.platform }}-installer
           asset_content_type: application/octet-stream
