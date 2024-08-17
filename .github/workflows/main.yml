@@ -33,6 +33,13 @@ jobs:
         with:
           node-version: lts/*
 
+      - name: Install Bun and other dependencies
+        uses: setup-build-postinstall@v1
+        with:
+          package-manager: npm
+          install-dependencies: true
+          add-dependency: bun@latest
+
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
         with:
