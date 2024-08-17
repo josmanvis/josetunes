@@ -1,11 +1,13 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-
-use tauri::command;
+// #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use regex::Regex;
 use reqwest::blocking::get;
 use serde::Serialize;
+use std::env;
+use std::path::Path;
+use std::process::Command;
+use tauri::command;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[command]
@@ -14,9 +16,16 @@ pub fn greet(name: &str) -> String {
 }
 
 // Binding for yt-dlp, we only need audio in the highest quality
+
 #[command]
 pub fn download_audio(url: &str, format: &str) -> String {
-    let output = std::process::Command::new("yt-dlp")
+    let home_dir = env::var("HOME")
+        .or_else(|_| env::var("USERPROFILE"))
+        .expect("Failed to get home directory");
+    let downloads_path = Path::new(&home_dir).join("Downloads");
+    let output_path = downloads_path.join("%(title)s.%(ext)s");
+
+    let output = Command::new("yt-dlp")
         .args(&[
             "-f",
             "bestaudio",
@@ -25,17 +34,12 @@ pub fn download_audio(url: &str, format: &str) -> String {
             format,
             url,
             "-o",
-            "~/Downloads/%(title)s.%(ext)s",
+            output_path.to_str().unwrap(),
         ])
         .output()
         .expect("failed to execute process");
 
-    return output.status.success().to_string();
-    // if output.status.success() {
-    //     return "Downloaded audio".to_string();
-    // } else {
-    //     return "Failed to download audio".to_string();
-    // }
+    output.status.success().to_string()
 }
 
 #[derive(Serialize)]
