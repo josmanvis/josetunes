@@ -10,7 +10,7 @@ fn main() {
             commands::greet,
             commands::download_audio,
             commands::fetch_artwork_html,
-            bpm::get_bpm // Add this line to include the get_bpm command
+            // bpm::get_bpm // Add this line to include the get_bpm command
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
