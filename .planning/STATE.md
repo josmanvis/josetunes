@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-01-23)
 ## Current Position
 
 Phase: 2 of 4 (npm Distribution)
-Plan: 2 of 3 complete (02-01, 02-02 done, 02-03 remaining)
-Status: In progress
-Last activity: 2026-01-23 — Completed 02-02-PLAN.md
+Plan: 3 of 3 in progress (02-01, 02-02 done, 02-03 checkpoint-paused)
+Status: Checkpoint paused — awaiting npm OIDC setup verification
+Last activity: 2026-01-23 — Executing 02-03-PLAN.md (Task 1 complete, Task 2 checkpoint)
 
-Progress: [█████░░░░░] 57%
+Progress: [██████░░░░] 64%
 
 ## Performance Metrics
 
@@ -56,6 +56,8 @@ Recent decisions affecting current work:
 - Best-effort checksum verification — Warns on SHA256 mismatch but continues (does not block install)
 - No auto-sudo on Linux — Prints dpkg instructions for user to run manually
 - Redirect limit of 5 — Handles GitHub multi-layer redirects safely
+- OIDC over npm tokens — Uses Trusted Publishing for npm auth (no secrets needed)
+- Version stamped from git tag — Package version set at publish time from tag ref
 
 ### Pending Todos
 
@@ -67,6 +69,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23T20:49Z
-Stopped at: Completed 02-02-PLAN.md (CLI download and platform detection)
+Last session: 2026-01-23T20:52Z
+Stopped at: 02-03-PLAN.md checkpoint (Task 2: npm OIDC setup verification)
 Resume file: None
