@@ -83,10 +83,10 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CI-01 | Phase 1 | Pending |
-| CI-02 | Phase 1 | Pending |
-| CI-03 | Phase 1 | Pending |
-| CI-04 | Phase 1 | Pending |
+| CI-01 | Phase 1 | Complete |
+| CI-02 | Phase 1 | Complete |
+| CI-03 | Phase 1 | Complete |
+| CI-04 | Phase 1 | Complete |
 | NPM-01 | Phase 2 | Pending |
 | NPM-02 | Phase 2 | Pending |
 | NPM-03 | Phase 2 | Pending |
