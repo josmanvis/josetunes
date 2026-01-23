@@ -1,0 +1,23 @@
+{
+  "name": "josetunes",
+  "version": "0.1.0",
+  "description": "Cross-platform desktop audio downloader - installer",
+  "bin": {
+    "josetunes": "bin/josetunes.js"
+  },
+  "files": [
+    "bin/",
+    "package.json"
+  ],
+  "keywords": ["audio", "downloader", "youtube", "soundcloud", "desktop", "tauri"],
+  "license": "MIT",
+  "author": "Jose",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josmanvis/josetunes.git",
+    "directory": "packages/josetunes"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
