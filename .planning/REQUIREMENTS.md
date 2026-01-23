@@ -93,10 +93,10 @@
 | NPM-04 | Phase 2 | Complete |
 | BREW-01 | Phase 3 | Complete |
 | BREW-02 | Phase 3 | Complete |
-| DOC-01 | Phase 4 | Pending |
-| DOC-02 | Phase 4 | Pending |
-| DOC-03 | Phase 4 | Pending |
-| DOC-04 | Phase 4 | Pending |
+| DOC-01 | Phase 4 | Complete |
+| DOC-02 | Phase 4 | Complete |
+| DOC-03 | Phase 4 | Complete |
+| DOC-04 | Phase 4 | Complete |
 
 ## v2+ Requirements (deferred)
 
