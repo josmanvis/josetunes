@@ -13,7 +13,7 @@ JoseTunes is transitioning from a working desktop app to a professionally distri
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: CI/CD Foundation** - Tag-triggered builds producing GitHub Releases
-- [ ] **Phase 2: npm Distribution** - Platform-specific packages enabling npx installation
+- [ ] **Phase 2: npm Distribution** - Single wrapper package enabling npx installation
 - [ ] **Phase 3: Homebrew Tap** - Custom tap with automated cask updates
 - [ ] **Phase 4: Documentation** - README with installation methods and usage guide
 
@@ -43,20 +43,20 @@ Plans:
 
 **Depends on**: Phase 1 (requires GitHub Release artifacts)
 
-**Requirements**: NPM-01, NPM-02, NPM-03, NPM-04
+**Requirements**: NPM-01, NPM-03, NPM-04
 
 **Success Criteria** (what must be TRUE):
-  1. User can run `npx josetunes` and correct platform package is installed
-  2. Install command detects platform and opens/runs appropriate installer (open .dmg on macOS, launch .msi on Windows, provide dpkg instructions on Linux)
-  3. Installation works with `--no-optional` flag via postinstall fallback
-  4. All 5 npm packages published automatically from CI after GitHub Release creation
+  1. User can run `npx josetunes` and correct installer is downloaded and launched
+  2. Install command detects platform and opens/runs appropriate installer (open .dmg on macOS, launch .exe on Windows, provide dpkg instructions on Linux)
+  3. CLI verifies download integrity via SHA256 checksum
+  4. npm package published automatically from CI via OIDC after GitHub Release creation
 
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: Create npm package structure with platform-specific packages
-- [ ] 02-02: Write install CLI with platform detection and installer launch
-- [ ] 02-03: Configure npm OIDC publishing in CI
+- [ ] 02-01-PLAN.md -- Create npm package structure (package.json + bin stub)
+- [ ] 02-02-PLAN.md -- Implement CLI with download, checksum verification, and installer launch
+- [ ] 02-03-PLAN.md -- Add npm OIDC publish job to CI workflow
 
 ### Phase 3: Homebrew Tap
 **Goal**: macOS users can install via `brew install josetunes/tap/josetunes`
@@ -97,12 +97,12 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. CI/CD Foundation | 2/2 | Complete | 2026-01-23 |
-| 2. npm Distribution | 0/3 | Not started | - |
+| 2. npm Distribution | 0/3 | Planned | - |
 | 3. Homebrew Tap | 0/2 | Not started | - |
 | 4. Documentation | 0/1 | Not started | - |
 
