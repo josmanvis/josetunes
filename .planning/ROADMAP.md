@@ -73,8 +73,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: Create homebrew-josetunes repository with cask definition
-- [ ] 03-02: Add automated cask update workflow triggered by releases
+- [ ] 03-01-PLAN.md -- Create tap repository with cask definition and update workflow
+- [ ] 03-02-PLAN.md -- Add cross-repo trigger to main CI release job
 
 ### Phase 4: Documentation
 **Goal**: Users can discover and understand all installation methods and prerequisites
