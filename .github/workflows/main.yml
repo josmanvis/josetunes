@@ -97,3 +97,53 @@ jobs:
             src-tauri/target/release/bundle/msi/*.msi.zip.sig
             src-tauri/target/release/bundle/nsis/*.exe
           if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Flatten artifacts
+        run: |
+          mkdir -p release-assets
+          find artifacts -type f \( -name "*.dmg" -o -name "*.deb" -o -name "*.AppImage" -o -name "*.msi" -o -name "*.exe" -o -name "*.app.tar.gz" -o -name "*.AppImage.tar.gz" -o -name "*.msi.zip" -o -name "*.sig" \) -exec cp {} release-assets/ \;
+          ls -la release-assets/
+
+      - name: Generate checksums
+        run: |
+          cd release-assets
+          sha256sum * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: 'JoseTunes ${{ github.ref_name }}'
+          body: |
+            ## JoseTunes ${{ github.ref_name }}
+
+            ### Downloads
+            | Platform | File |
+            |----------|------|
+            | macOS (Apple Silicon) | `josetunes_*_aarch64.dmg` |
+            | macOS (Intel) | `josetunes_*_x64.dmg` |
+            | Windows | `josetunes_*_x64-setup.exe` or `.msi` |
+            | Linux (Debian/Ubuntu) | `josetunes_*_amd64.deb` |
+            | Linux (AppImage) | `josetunes_*_amd64.AppImage` |
+
+            ### Verification
+            Verify downloads with: `sha256sum -c SHA256SUMS.txt`
+          files: release-assets/*
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
