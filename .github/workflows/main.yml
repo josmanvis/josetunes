@@ -148,6 +148,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Trigger Homebrew tap update
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          gh workflow run update-cask.yml \
+            -f version=${VERSION} \
+            -R josmanvis/homebrew-josetunes
+        env:
+          GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+
   publish-npm:
     needs: release
     runs-on: ubuntu-latest
