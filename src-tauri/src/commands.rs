@@ -15,7 +15,10 @@ pub fn greet(name: &str) -> String {
 
 // Binding for yt-dlp, we only need audio in the highest quality
 #[command]
-pub fn download_audio(url: &str, format: &str) -> String {
+pub fn download_audio(url: &str, format: &str) -> Result<String, String> {
+    let home = std::env::var("HOME").unwrap_or_else(|_| ".".to_string());
+    let output_template = format!("{}/Downloads/%(title)s.%(ext)s", home);
+
     let output = std::process::Command::new("yt-dlp")
         .args(&[
             "-f",
@@ -25,17 +28,17 @@ pub fn download_audio(url: &str, format: &str) -> String {
             format,
             url,
             "-o",
-            "~/Downloads/%(title)s.%(ext)s",
+            &output_template,
         ])
         .output()
-        .expect("failed to execute process");
+        .map_err(|e| format!("Failed to run yt-dlp: {}. Is yt-dlp installed and in your PATH?", e))?;
 
-    return output.status.success().to_string();
-    // if output.status.success() {
-    //     return "Downloaded audio".to_string();
-    // } else {
-    //     return "Failed to download audio".to_string();
-    // }
+    if output.status.success() {
+        Ok("Downloaded audio".to_string())
+    } else {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        Err(format!("yt-dlp failed: {}", stderr))
+    }
 }
 
 #[derive(Serialize)]
