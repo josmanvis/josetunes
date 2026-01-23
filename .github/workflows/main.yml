@@ -147,3 +147,28 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-npm:
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Stamp version from tag
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          cd packages/josetunes
+          npm version $VERSION --no-git-tag-version --allow-same-version
+
+      - name: Publish to npm
+        run: |
+          cd packages/josetunes
+          npm publish --access public
