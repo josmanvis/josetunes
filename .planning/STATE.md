@@ -11,28 +11,28 @@ See: .planning/PROJECT.md (updated 2026-01-23)
 ## Current Position
 
 Phase: 2 of 4 (npm Distribution)
-Plan: 1 of 3 complete (02-01 done, 02-02 and 02-03 remaining)
+Plan: 2 of 3 complete (02-01, 02-02 done, 02-03 remaining)
 Status: In progress
-Last activity: 2026-01-23 — Completed 02-01-PLAN.md
+Last activity: 2026-01-23 — Completed 02-02-PLAN.md
 
-Progress: [████░░░░░░] 43%
+Progress: [█████░░░░░] 57%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: ~1.2 minutes
-- Total execution time: <0.1 hours
+- Total plans completed: 4
+- Average duration: ~1.1 minutes
+- Total execution time: ~0.1 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-ci-cd-foundation | 2/2 | ~3min | ~1.5min |
-| 02-npm-distribution | 1/3 | ~46s | ~46s |
+| 02-npm-distribution | 2/3 | ~2.3min | ~1.1min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (~2min), 01-02 (~1min), 02-01 (~46s)
+- Last 5 plans: 01-01 (~2min), 01-02 (~1min), 02-01 (~46s), 02-02 (~88s)
 - Trend: Accelerating
 
 *Updated after each plan completion*
@@ -53,6 +53,9 @@ Recent decisions affecting current work:
 - Zero npm dependencies for installer — Uses only Node.js built-ins to minimize supply chain risk
 - Node >=16.0.0 engine requirement — Matches LTS support window
 - Files whitelist over .npmignore — More explicit control of published package contents
+- Best-effort checksum verification — Warns on SHA256 mismatch but continues (does not block install)
+- No auto-sudo on Linux — Prints dpkg instructions for user to run manually
+- Redirect limit of 5 — Handles GitHub multi-layer redirects safely
 
 ### Pending Todos
 
@@ -64,6 +67,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23T20:46Z
-Stopped at: Completed 02-01-PLAN.md (npm package skeleton)
+Last session: 2026-01-23T20:49Z
+Stopped at: Completed 02-02-PLAN.md (CLI download and platform detection)
 Resume file: None
