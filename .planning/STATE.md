@@ -6,23 +6,23 @@ See: .planning/PROJECT.md (updated 2026-01-23)
 
 **Core value:** Users can paste a URL and get high-quality audio files on their machine with minimal friction.
 
-**Current focus:** Phase 3 - Homebrew Tap
+**Current focus:** Phase 4 - Documentation
 
 ## Current Position
 
-Phase: 3 of 4 (Homebrew Tap)
-Plan: 1 of 2 (in progress)
-Status: In progress
-Last activity: 2026-01-23 — Completed 03-01-PLAN.md (Homebrew tap repository)
+Phase: 4 of 4 (Documentation)
+Plan: 0 of 1 (not started)
+Status: Ready to plan
+Last activity: 2026-01-23 — Phase 3 completed (all 2 plans done)
 
-Progress: [████████████░░░░░░░░] 60%
+Progress: [███████████████░░░░░] 75%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
+- Total plans completed: 7
 - Average duration: ~1.1 minutes
-- Total execution time: ~0.1 hours
+- Total execution time: ~0.13 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [████████████░░░░░░░░] 60%
 |-------|-------|-------|----------|
 | 01-ci-cd-foundation | 2/2 | ~3min | ~1.5min |
 | 02-npm-distribution | 3/3 | ~3.3min | ~1.1min |
-| 03-homebrew-tap | 1/2 | ~100s | ~100s |
+| 03-homebrew-tap | 2/2 | ~2min | ~1min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01 (~46s), 02-02 (~88s), 02-03 (~1min), 03-01 (~100s)
+- Last 5 plans: 02-02 (~88s), 02-03 (~1min), 03-01 (~100s), 03-02 (~1min)
 - Trend: Consistent ~1min/plan
 
 *Updated after each plan completion*
@@ -62,6 +62,8 @@ Recent decisions affecting current work:
 - Placeholder SHA256 in initial cask — Update workflow sets real checksums on first release
 - Quoted heredoc + sed for cask generation — Preserves Ruby interpolation while injecting shell values
 - Retry loop for release assets — 5 attempts, 30s intervals to handle upload lag
+- Fine-grained PAT over classic — Scoped to tap repo only for least-privilege access
+- gh workflow run for cross-repo trigger — Simpler than repository_dispatch, passes version as input
 
 ### Pending Todos
 
@@ -69,10 +71,10 @@ None yet.
 
 ### Blockers/Concerns
 
-- HOMEBREW_TAP_TOKEN secret needed: A PAT with `actions:write` scope on `josmanvis/homebrew-josetunes` must be created and stored in the main repo before the cross-repo trigger (plan 03-02) will work.
+None.
 
 ## Session Continuity
 
 Last session: 2026-01-23
-Stopped at: Completed 03-01-PLAN.md
+Stopped at: Phase 3 complete, Phase 4 ready to plan
 Resume file: None
