@@ -13,7 +13,7 @@ JoseTunes is transitioning from a working desktop app to a professionally distri
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: CI/CD Foundation** - Tag-triggered builds producing GitHub Releases
-- [ ] **Phase 2: npm Distribution** - Single wrapper package enabling npx installation
+- [x] **Phase 2: npm Distribution** - Single wrapper package enabling npx installation
 - [ ] **Phase 3: Homebrew Tap** - Custom tap with automated cask updates
 - [ ] **Phase 4: Documentation** - README with installation methods and usage guide
 
@@ -54,9 +54,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md -- Create npm package structure (package.json + bin stub)
-- [ ] 02-02-PLAN.md -- Implement CLI with download, checksum verification, and installer launch
-- [ ] 02-03-PLAN.md -- Add npm OIDC publish job to CI workflow
+- [x] 02-01-PLAN.md -- Create npm package structure (package.json + bin stub)
+- [x] 02-02-PLAN.md -- Implement CLI with download, checksum verification, and installer launch
+- [x] 02-03-PLAN.md -- Add npm OIDC publish job to CI workflow
 
 ### Phase 3: Homebrew Tap
 **Goal**: macOS users can install via `brew install josetunes/tap/josetunes`
@@ -102,7 +102,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. CI/CD Foundation | 2/2 | Complete | 2026-01-23 |
-| 2. npm Distribution | 0/3 | Planned | - |
+| 2. npm Distribution | 3/3 | Complete | 2026-01-23 |
 | 3. Homebrew Tap | 0/2 | Not started | - |
 | 4. Documentation | 0/1 | Not started | - |
 

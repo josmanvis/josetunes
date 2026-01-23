@@ -87,10 +87,10 @@
 | CI-02 | Phase 1 | Complete |
 | CI-03 | Phase 1 | Complete |
 | CI-04 | Phase 1 | Complete |
-| NPM-01 | Phase 2 | Pending |
-| NPM-02 | Phase 2 | Pending |
-| NPM-03 | Phase 2 | Pending |
-| NPM-04 | Phase 2 | Pending |
+| NPM-01 | Phase 2 | Complete |
+| NPM-02 | Phase 2 | Superseded (single wrapper package used instead) |
+| NPM-03 | Phase 2 | Complete |
+| NPM-04 | Phase 2 | Complete |
 | BREW-01 | Phase 3 | Pending |
 | BREW-02 | Phase 3 | Pending |
 | DOC-01 | Phase 4 | Pending |
