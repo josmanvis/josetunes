@@ -92,7 +92,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 04-01: Write comprehensive README with installation and usage documentation
+- [ ] 04-01-PLAN.md -- Write comprehensive README with installation and usage documentation
 
 ## Progress
 
