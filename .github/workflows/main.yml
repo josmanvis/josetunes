@@ -73,14 +73,7 @@ jobs:
         run: bun install
 
       - name: Stamp version from tag
-        run: |
-          VERSION=${GITHUB_REF_NAME#v}
-          node -e "
-            const fs = require('fs');
-            const conf = JSON.parse(fs.readFileSync('src-tauri/tauri.conf.json', 'utf8'));
-            conf.package.version = '${VERSION}';
-            fs.writeFileSync('src-tauri/tauri.conf.json', JSON.stringify(conf, null, 2) + '\n');
-          "
+        run: node -e "const fs=require('fs'),v=process.env.GITHUB_REF_NAME.replace(/^v/,''),c=JSON.parse(fs.readFileSync('src-tauri/tauri.conf.json','utf8'));c.package.version=v;fs.writeFileSync('src-tauri/tauri.conf.json',JSON.stringify(c,null,2)+'\n')"
 
       - name: Build with tauri-action
         uses: tauri-apps/tauri-action@v0
